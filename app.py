@@ -2,91 +2,57 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/display")
+@app.get("/golu")
 def home():
-    return {"status": "ZaikaAPI is live!"}
-@app.get("/name")
-def get_name():
-    return {"name": "Zamman"}
+    return {"status": "Hello Golu"}
 
-
-
-@app.get("/menu")
-def get_menu():
-    return [{"item": "Biryani", "price": 220}]
-
-@app.post("/orders")
-def place_order():
-    return {"message": "Order placed!"}
-
-@app.delete("/orders/{order_id}")
-def cancel_order(order_id: int):
-    return {"message": f"Order {order_id} cancelled"}
+@app.get('/display')
+def display():
+    return {'This is another page...'}
 
 
 
 
 
 
-#Create a function that loads the json file in read mode
 import json
-@app.get("/show")
+#Create a function that loads the json file in read mode.
+@app.get('/')
 def show_products():
-    with open('products.json', 'r') as file:
-        products = json.load(file)  # json mei jaayega data uth kar python mei le aayega  
+    with open('products.json','r') as file:
+        products = json.load(file)
+
     return products
 
 
 
+# max = 9+1 = 10 -> id -> naya product banega.
+# # newid = max([for i ]) + 1
 
-
-        
-@app.get("/show/{id}")
-def getby_id(id: int):
-    with open('products.json', 'r') as file:
-        products = json.load(file)  # json mei jaayega data uth kar python mei le aayega  
-    
-    for i in products:
-        if i['id'] == id:
-            print(i)
-        
-
-import json
-with open('products.json', 'r') as file:
-    product= json.load(file)  
-
-d=[
-    {
-    "id": 9,
-    "name": "Default",
-    "category": "Ese tese",
-    "price": 1000,
-    "in_stock": True
-    }
-]
-product.append(d)
-
-with open('products.json', 'w') as file:
-    json.dump(product,file)
-
-print(product)
+@app.get('/show/{id}')
+def getby_id(id: int): #id:int -> variable:data type.
+    with open('products.json','r') as file:
+        product = json.load(file)
+        for i in product:
+            if i['id'] == id:
+                return i
 
 
 
-# creating a post route which will add new data in json
-@app.post("/add")
+#Creating a post route which will add new data in json.
+@app.post('/add')
 def add_product(userProduct: dict):
     try:
         with open('products.json', 'r') as file:
-            oldProducts=json.load(file)
+            oldProducts = json.load(file)
         
         oldProducts.append(userProduct)
 
-        with open('products.json', 'w') as file:
-            json.dump(oldProducts,file)
+        with open('products.json','w') as file:
+            json.dump(oldProducts, file)
     except Exception as e:
-        return {"message": "Error occurred while adding product", "error": str(e)}
-            
+        return {"status": "error", "message": str(e)}
+    
 
 
 
@@ -94,26 +60,45 @@ def add_product(userProduct: dict):
 
 
 
-# PUT -> Update Values
-# id=5
-# with open ('products.json', 'r') as file:
-#     products= json.load(file)
-#     for i in products:
-#         if i['id']==id:
-#             print(i)
 
 
 
-def update_product(id: int, updated_product: dict):
+
+
+#PUT -> Update Values
+def update_product(id:int, updateProduct:dict):
     with open('products.json', 'r') as file:
         products = json.load(file)
 
     for i in products:
-        if i['id'] == id:
-            i.update(updated_product)
-            
+       if i['id']  ==  id:
+         i.update(updateProduct)
+    
     with open('products.json', 'w') as file:
         json.dump(products, file)
 
 
 
+@app.delete('/delete/{id}')
+def delete_product(id:int):
+    with open('products.json', 'r') as file:
+        products = json.load(file)
+
+    for i in products:
+        if i['id'] == id:
+            products.remove(i)
+            with open('products.json', 'w') as file:
+                 json.dump(products, file)
+                 return{"item added successfully"}
+            
+    else:
+        return{"item not found"}
+            
+       
+    
+
+
+# Start =(page-1) * limit
+# end = start + limit
+# or 
+# end = page * limit
