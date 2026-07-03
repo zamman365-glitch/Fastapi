@@ -90,6 +90,7 @@ def delete_product(id:int):
             with open('products.json', 'w') as file:
                  json.dump(products, file)
                  return{"item added successfully"}
+         
             
     else:
         return{"item not found"}
