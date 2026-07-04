@@ -103,3 +103,21 @@ def delete_product(id:int):
 # end = start + limit
 # or 
 # end = page * limit
+
+
+@app.delete('/delete/{id}')
+def delete_product(id:int):
+    with open('products.json', 'r') as file:
+        products = json.load(file)
+
+    for i in products:
+        if i['id'] == id:
+            products.remove(i)
+            with open('products.json', 'w') as file:
+                 json.dump(products, file)
+                 return{"item added successfully"}
+         
+            
+    else:
+        return{"item not found"}
+            
