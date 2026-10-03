@@ -1,123 +1,69 @@
+
 from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/golu")
-def home():
-    return {"status": "Hello Golu"}
-
-@app.get('/display')
-def display():
-    return {'This is another page...'}
-
-
-
-
-
-
 import json
-#Create a function that loads the json file in read mode.
-@app.get('/')
-def show_products():
-    with open('products.json','r') as file:
-        products = json.load(file)
 
-    return products
+app = FastAPI() 
 
 
+def load_students():
+    with open("students.json", "r") as file:
+        return json.load(file)
 
-# max = 9+1 = 10 -> id -> naya product banega.
-# # newid = max([for i ]) + 1
+def save_students(students):
+    with open("students.json", "w") as file:
+        json.dump(students, file, indent=4)    
 
-@app.get('/show/{id}')
-def getby_id(id: int): #id:int -> variable:data type.
-    with open('products.json','r') as file:
-        product = json.load(file)
-        for i in product:
-            if i['id'] == id:
-                return i
+
+@app.get("/")
+def Hello():
+    return {"message" : "Hello FastAPI"}
 
 
 
-#Creating a post route which will add new data in json.
-@app.post('/add')
-def add_product(userProduct: dict):
-    try:
-        with open('products.json', 'r') as file:
-            oldProducts = json.load(file)
-        
-        oldProducts.append(userProduct)
+@app.get("/students")
+def get_students():
+    return load_students()
 
-        with open('products.json','w') as file:
-            json.dump(oldProducts, file)
-    except Exception as e:
-        return {"status": "error", "message": str(e)}
-    
+
+
+@app.get("/students/{student_id}")
+def get_student(student_id: int):
+    students = load_students()  
+    for student in students:
+        if student["id"] == student_id:
+            return student
+    return {"message": "Student not found"}
 
 
 
 
+@app.post("/students")
+def create_student(new_student:dict):
+    students = load_students()
+    students.append(new_student)
+    save_students(students)
+    return new_student
 
 
 
+@app.put("/students/{student_id}")
+def update_student(student_id: int, updated_student: dict):
+    students = load_students()
+    for student in students:
+        if student["id"] == student_id:
+            student.update(updated_student)
+            save_students(students)
+            return student
+    return {"message": "Student not found"}
 
 
 
-
-
-#PUT -> Update Values
-def update_product(id:int, updateProduct:dict):
-    with open('products.json', 'r') as file:
-        products = json.load(file)
-
-    for i in products:
-       if i['id']  ==  id:
-         i.update(updateProduct)
-    
-    with open('products.json', 'w') as file:
-        json.dump(products, file)
-
-
-
-@app.delete('/delete/{id}')
-def delete_product(id:int):
-    with open('products.json', 'r') as file:
-        products = json.load(file)
-
-    for i in products:
-        if i['id'] == id:
-            products.remove(i)
-            with open('products.json', 'w') as file:
-                 json.dump(products, file)
-                 return{"item added successfully"}
-         
-            
-    else:
-        return{"item not found"}
-            
-       
-    
-
-
-# Start =(page-1) * limit
-# end = start + limit
-# or 
-# end = page * limit
-
-
-@app.delete('/delete/{id}')
-def delete_product(id:int):
-    with open('products.json', 'r') as file:
-        products = json.load(file)
-
-    for i in products:
-        if i['id'] == id:
-            products.remove(i)
-            with open('products.json', 'w') as file:
-                 json.dump(products, file)
-                 return{"item added successfully"}
-         
-            
-    else:
-        return{"item not found"}
-            
+@app.delete("/students/{student_id}")
+def delete_student(student_id : int):
+    students = load_students()
+    for student in students:
+        if student["id"] == student_id:
+            students.remove(student)
+            save_students(students)
+            return {"message": "Student deleted"}
+    return {"message": "Student not found"}
