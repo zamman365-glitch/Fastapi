@@ -14,6 +14,8 @@ def save_students(students):
         json.dump(students, file, indent=4)    
 
 
+
+
 @app.get("/")
 def Hello():
     return {"message" : "Hello FastAPI"}
