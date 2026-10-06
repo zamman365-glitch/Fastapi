@@ -12,7 +12,6 @@ students = [
     {"id": 2, "name": "Priya Patel", "course": "Data Science"}
 ]
 
-# 3. Root endpoint (Health Check)
 @app.get("/")
 def home():
     return {"message": "Welcome to the Student API!"}
