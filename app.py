@@ -36,4 +36,4 @@ def create_student(new_student: dict):
     return {
         "message": "Student added successfully",
         "data": new_student
-    }
+    } 
