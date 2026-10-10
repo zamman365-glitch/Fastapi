@@ -37,3 +37,6 @@ def create_student(new_student: dict):
         "message": "Student added successfully",
         "data": new_student
     } 
+
+
+@app.get
