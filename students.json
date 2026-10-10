@@ -1,0 +1,162 @@
+[
+    {
+        "id": 1,
+        "name": "Aman Sharma",
+        "email": "amansharma24@gmail.com",
+        "age": 19,
+        "course": "Computer Science",
+        "city": "Bangalore"
+    },
+    {
+        "id": 2,
+        "name": "Aman Verma",
+        "email": "aman.verma.tech@gmail.com",
+        "age": 22,
+        "course": "Data Science",
+        "city": "Delhi"
+    },
+    {
+        "id": 3,
+        "name": "Aman Gupta",
+        "email": "amangupta.dev@gmail.com",
+        "age": 25,
+        "course": "Web Development",
+        "city": "Bangalore"
+    },
+    {
+        "id": 4,
+        "name": "Aman Kumar",
+        "email": "amankumar.ai@gmail.com",
+        "age": 21,
+        "course": "Artificial Intelligence",
+        "city": "Pune"
+    },
+    {
+        "id": 5,
+        "name": "Priya Patel",
+        "email": "priya.patel99@gmail.com",
+        "age": 20,
+        "course": "Computer Science",
+        "city": "Mumbai"
+    },
+    {
+        "id": 6,
+        "name": "Priya Sharma",
+        "email": "priyasharma.cs@gmail.com",
+        "age": 23,
+        "course": "Computer Science",
+        "city": "Delhi"
+    },
+    {
+        "id": 7,
+        "name": "Priya Singh",
+        "email": "priyasingh.code@gmail.com",
+        "age": 22,
+        "course": "Data Science",
+        "city": "Bangalore"
+    },
+    {
+        "id": 8,
+        "name": "Rahul Verma",
+        "email": "rahulverma.dev@gmail.com",
+        "age": 24,
+        "course": "Web Development",
+        "city": "Pune"
+    },
+    {
+        "id": 9,
+        "name": "Rahul Sharma",
+        "email": "rahulsharma.ds@gmail.com",
+        "age": 26,
+        "course": "Data Science",
+        "city": "Delhi"
+    },
+    {
+        "id": 10,
+        "name": "Rahul Mehra",
+        "email": "rahul.mehra95@gmail.com",
+        "age": 21,
+        "course": "Computer Science",
+        "city": "Jaipur"
+    },
+    {
+        "id": 11,
+        "name": "Rohit Kumar",
+        "email": "rohitkumar.ai@gmail.com",
+        "age": 22,
+        "course": "Artificial Intelligence",
+        "city": "Delhi"
+    },
+    {
+        "id": 12,
+        "name": "Rohit Jain",
+        "email": "rohit.jain77@gmail.com",
+        "age": 25,
+        "course": "Cloud Computing",
+        "city": "Mumbai"
+    },
+    {
+        "id": 13,
+        "name": "Rohit Verma",
+        "email": "rohitverma.cloud@gmail.com",
+        "age": 23,
+        "course": "Cloud Computing",
+        "city": "Bangalore"
+    },
+    {
+        "id": 14,
+        "name": "Sakshi Jain",
+        "email": "sakshi.jain01@gmail.com",
+        "age": 21,
+        "course": "Artificial Intelligence",
+        "city": "Pune"
+    },
+    {
+        "id": 15,
+        "name": "Sakshi Sharma",
+        "email": "sakshi.sharma99@gmail.com",
+        "age": 20,
+        "course": "Web Development",
+        "city": "Mumbai"
+    },
+    {
+        "id": 16,
+        "name": "Neha Joshi",
+        "email": "neha.joshi88@gmail.com",
+        "age": 18,
+        "course": "Computer Science",
+        "city": "Mumbai"
+    },
+    {
+        "id": 17,
+        "name": "Neha Verma",
+        "email": "nehaverma.tech@gmail.com",
+        "age": 24,
+        "course": "Cyber Security",
+        "city": "Hyderabad"
+    },
+    {
+        "id": 18,
+        "name": "Arjun Nair",
+        "email": "arjun.nair2002@gmail.com",
+        "age": 27,
+        "course": "Data Science",
+        "city": "Bangalore"
+    },
+    {
+        "id": 19,
+        "name": "Arjun Kumar",
+        "email": "arjun.kumar.sec@gmail.com",
+        "age": 26,
+        "course": "Cyber Security",
+        "city": "Hyderabad"
+    },
+    {
+        "id": 20,
+        "name": "Tanvi Gupta",
+        "email": "tanvi.gupta98@gmail.com",
+        "age": 22,
+        "course": "Artificial Intelligence",
+        "city": "Pune"
+    }
+]

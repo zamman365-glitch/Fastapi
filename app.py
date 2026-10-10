@@ -39,4 +39,4 @@ def create_student(new_student: dict):
     } 
 
 
-@app.get
+@app.get("/students")
