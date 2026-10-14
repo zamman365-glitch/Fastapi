@@ -40,3 +40,7 @@ def create_student(new_student: dict):
 
 
 @app.get("/students")
+
+@app.post("/students")
+def create_student(new_student: dict):
+    students.append(new_student)
