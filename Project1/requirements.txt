@@ -1,5 +1,6 @@
+requirements.txt 
 fastapi
 uvicorn
-sqlalchemy
+sqlalchemy 
 psycopg[binary]
 email-validator
