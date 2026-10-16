@@ -45,5 +45,3 @@ def create_student(new_student: dict):
 def create_student(new_student: dict):
     students.append(new_student)
 
-
-# hiii
