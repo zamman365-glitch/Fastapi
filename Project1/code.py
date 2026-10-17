@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,HTTPException
 from sqlalchemy import create_engine ,String,select
 from sqlalchemy.orm import sessionmaker , DeclarativeBase , Mapped ,mapped_column
 from pydantic import BaseModel , Field ,EmailStr
@@ -37,6 +37,11 @@ class StudentResponse(BaseModel):
 def create_student(student_data :StudentCreate):
     db = SessionLocal()
     try:
+        query = select(Student).where(Student.email == student_data.email)
+        result = db.execute(query)
+        existing_student = result.scalar_one_or_none()
+        if existing_student:
+            raise HTTPException(status_code=400, detail="Student with this email already exists")
         new_student = Student(
             name = student_data.name,
             email= student_data.email,
