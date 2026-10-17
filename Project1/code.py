@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from sqlalchemy import create_engine ,String
+from sqlalchemy import create_engine ,String,select
 from sqlalchemy.orm import sessionmaker , DeclarativeBase , Mapped ,mapped_column
 from pydantic import BaseModel , Field ,EmailStr
 
@@ -44,9 +44,19 @@ def create_student(student_data :StudentCreate):
             )
         db.add(new_student)
         db.commit()
-        db.refresh(new_student)
+        db.refresh(new_student) 
         return new_student
     finally:
         db.close()
         
-        
+@app.get("/students/",response_model=list[StudentResponse])
+def get_all_student():
+    db= SessionLocal()
+    try:
+        query = select(Student)
+        print(f"Query: {query}")
+        result = db.execute(query)
+        students = result.scalars().all()
+        return students
+    finally:
+        db.close()
