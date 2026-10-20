@@ -14,3 +14,19 @@ class Student(Base):
     name: Mapped[str] = mapped_column(String(50), nullable=False)
     email: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
     course: Mapped[str] = mapped_column(String(50), nullable=False)
+
+class StudentCreate(BaseModel):
+    name :str = Field(min_length=2, max_length=100) 
+    email :EmailStr 
+    course : str =Field(min_length=2, max_length=50) 
+
+class StudentResponse(BaseModel):
+    id:int
+    name :str = Field(min_length=2, max_length=100) 
+    email :EmailStr 
+    course : str =Field(min_length=2, max_length=50) 
+
+class StudentUpdate(BaseModel):
+    name :str|None = Field(default=None, min_length=2, max_length=100) 
+    email :EmailStr|None=Field(default=None) 
+    course : str =Field(default=None, min_length=2, max_length=50)
