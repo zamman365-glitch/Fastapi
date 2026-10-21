@@ -30,3 +30,27 @@ class StudentUpdate(BaseModel):
     name :str|None = Field(default=None, min_length=2, max_length=100) 
     email :EmailStr|None=Field(default=None) 
     course : str =Field(default=None, min_length=2, max_length=50)
+
+
+@app.post("/students",response_model=StudentResponse)
+def create_student(student_data :StudentCreate):
+    db = SessionLocal()
+    try:
+        query = select(Student).where(Student.email == student_data.email)
+        result = db.execute(query)
+        existing_student = result.scalar_one_or_none()
+        if existing_student:
+            raise HTTPException(status_code=400, detail="Student with this email already exists")
+        
+        new_student = Student(
+            name = student_data.name,
+            email= student_data.email,
+            course = student_data.course
+            )
+        db.add(new_student)
+        db.commit()
+        db.refresh(new_student) 
+        return new_student
+    finally:
+        db.close()
+        
