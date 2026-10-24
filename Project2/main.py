@@ -201,3 +201,28 @@ def delete_product(product_id: int):
 
     finally:
         db.close()
+
+
+
+
+@app.delete("/products/{product_id}")
+def delete_product(product_id: int):
+    db = SessionLocal()
+
+    try:
+        query = select(Product).where(Product.id == product_id)
+        product = db.execute(query).scalar_one_or_none()
+
+        if not product:
+            raise HTTPException(
+                status_code=404,
+                detail="Product not found"
+            )
+
+        db.delete(product)
+        db.commit()
+
+        return {"message": "Product deleted successfully"}
+
+    finally:
+        db.close()
