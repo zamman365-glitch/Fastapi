@@ -205,8 +205,8 @@ def delete_product(product_id: int):
 
 
 
-@app.delete("/products/{product_id}")
-def delete_product(product_id: int):
+@app.patch("/products/{product_id}", response_model=ProductResponse)
+def update_product(product_id: int, product_data: ProductUpdate):
     db = SessionLocal()
 
     try:
@@ -219,10 +219,19 @@ def delete_product(product_id: int):
                 detail="Product not found"
             )
 
-        db.delete(product)
-        db.commit()
+        if product_data.name is not None:
+            product.name = product_data.name
 
-        return {"message": "Product deleted successfully"}
+        if product_data.price is not None:
+            product.price = product_data.price
+
+        if product_data.category is not None:
+            product.category = product_data.category
+
+        db.commit()
+        db.refresh(product)
+
+        return product
 
     finally:
         db.close()
