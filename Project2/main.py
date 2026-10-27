@@ -251,7 +251,7 @@ def update_product(product_id: int, product_data: ProductUpdate):
         db.commit()
         db.refresh(product)
 
-         if product_data.name is not None:
+        if product_data.name is not None:
             product.name = product_data.name
 
         if product_data.price is not None:
