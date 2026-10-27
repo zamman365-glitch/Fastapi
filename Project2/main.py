@@ -251,3 +251,18 @@ def update_product(product_id: int, product_data: ProductUpdate):
         db.commit()
         db.refresh(product)
 
+         if product_data.name is not None:
+            product.name = product_data.name
+
+        if product_data.price is not None:
+            product.price = product_data.price
+
+        if product_data.category is not None:
+            product.category = product_data.category
+
+        db.commit()
+        db.refresh(product)
+
+
+
+
