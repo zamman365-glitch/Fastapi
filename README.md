@@ -1,6 +1,4 @@
-fastapi
 
-A modern, high-performance web API built using FastAPI, Python's framework for building APIs with speed and simplicity.
 
 🚀 Features
 
